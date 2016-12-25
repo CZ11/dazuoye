@@ -26,6 +26,20 @@ public class SearchUserContent implements SearchUserContentService {
 			}
 		}
 
+		for (int j = 0; j < weiboList.size(); j++) {
+			int date1 = Integer.parseInt(weiboList.get(j).getBaseContent()
+					.getDate());
+			int date2 = Integer.parseInt(weiboList.get(j + 1).getBaseContent()
+					.getDate());
+
+			// 根据日期排序
+			if (date2 > date1) {
+				BaseContentSR temp = weiboList.get(j);
+				weiboList.remove(j);
+				weiboList.add(j + 1, temp);
+			}
+		}
+
 		return weiboList;
 	}
 }
